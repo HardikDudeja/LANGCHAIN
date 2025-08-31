@@ -2,3 +2,5 @@ venv/
 .venv/
 env/
 .env/
+langchainModels/.env
+langchainModels/venv/
