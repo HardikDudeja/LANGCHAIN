@@ -203,3 +203,30 @@ messages3 = template3.format_messages(user_query="What is Python?")
 print(f"  System: {messages3[0].content}")
 print(f"  Human: {messages3[1].content}\n")
 
+# ============================================================================
+# Example 7: Minimal MessagesPlaceholder Demo
+# ============================================================================
+print("=" * 70)
+print("Example 7: Minimal MessagesPlaceholder Demo")
+print("=" * 70)
+
+placeholder_template = ChatPromptTemplate.from_messages([
+    ("system", "You are a concise assistant."),
+    MessagesPlaceholder(variable_name="history"),
+    ("human", "{input}")
+])
+
+history = [
+    HumanMessage(content="I love pizza."),
+    AIMessage(content="Pizza is great! What's your favorite topping?")
+]
+
+formatted = placeholder_template.format_messages(history=history, input="What did I say I love?")
+print("History passed into MessagesPlaceholder:")
+for msg in history:
+    print(f"  {type(msg).__name__}: {msg.content}")
+
+answer = model.invoke(formatted)
+print(f"\nUser: What did I say I love?")
+print(f"Bot: {answer.content}\n")
+
