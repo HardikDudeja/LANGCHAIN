@@ -12,3 +12,7 @@ prompt1 = ChatPromptTemplate.from_messages([
 prompt2 = ChatPromptTemplate.from_messages([
     ("user", "Generate a 5 pointer summary from the following text \n {text}")
 ])
+
+model = ChatOpenAI()
+
+parser = StrOutputParser()
